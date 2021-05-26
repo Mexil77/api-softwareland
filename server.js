@@ -9,7 +9,8 @@ var express = require("express"),
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 //mongoose.connect("mongodb://localhost/Tododb");
-const URI = process.env.MONGODB_URI;
+console.log(process.env.MONGODB_URI);
+const URI = process.env.MONGODB;
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
