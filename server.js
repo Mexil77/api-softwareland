@@ -10,15 +10,18 @@ var express = require("express"),
 mongoose.Promise = global.Promise;
 //mongoose.connect("mongodb://localhost/Tododb");
 const URI = process.env.MONGODB_URI;
-mongoose.connect(URI);
+mongoose.connect(URI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(function (req, res) {
-  res.status(404).send({ url: req.originalUrl + " not found" });
-});
 
 var routes = require("./api/routes/todoListRoutes"); //importing route
+
 routes(app); //register the route
 
 app.listen(port);
